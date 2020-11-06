@@ -9,8 +9,8 @@ public class Student {
     private DateTime dOB;
     private int id;
     private String username;
-    ArrayList<Course> courses = new ArrayList<Course>();
-    ArrayList<Module> modules = new ArrayList<Module>();
+    private ArrayList<Course> courses = new ArrayList<Course>();
+    private ArrayList<Module> modules = new ArrayList<Module>();
     private static int studentCount = 0;
 
     public Student(String name,int age, DateTime dOB, String username){
@@ -169,4 +169,13 @@ public class Student {
         this.modules = modules;
     }
 
+    /**
+     *function to return 1 if student is in a Course
+     *
+     * @param Course used to search for course
+     * @return returns the indext of the chorse or -1;
+     */
+    public int isInCourse(Course Course){
+        return courses.indexOf(Course);
+    }
 }
