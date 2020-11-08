@@ -5,8 +5,8 @@ public class Module {
 
     String name;
     int id;
-    ArrayList<Student> students = new ArrayList<Student>();
-    ArrayList<Course> courses = new ArrayList<Course>();
+    private ArrayList<Student> students = new ArrayList<Student>();
+    private ArrayList<Course> courses = new ArrayList<Course>();
     private static int modulesCount = 0;
 
     public Module(String name){
@@ -23,10 +23,17 @@ public class Module {
     }
 
     public void addStudent(Student student){
-        this.students.add(student);
+        boolean isPart = false;
+        for(int i = 0; i < students.size();i++){
+            if(students.get(i).getId() == student.getId()){
+                isPart = true;
+            }
+        }
+        if(isPart != true) {
+            this.students.add(student);
+        }
     }
-
-    public void addCourse(Course course){
+    public void addCourse(Course course) {
         this.courses.add(course);
     }
 

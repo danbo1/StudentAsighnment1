@@ -63,6 +63,43 @@ public class Course {
         this.modules = modules;
     }
 
+    /**
+     *  function to auto set the students by extracting them from the Modules.
+     */
+    public void addStudentsFromModules(){
+
+        ArrayList<Integer> studentIds = new ArrayList<Integer>();
+        ArrayList<Student> studentsToAdd = new ArrayList<Student>();
+
+        for(int i = 0; i < modules.size();i++){
+            Module temp = modules.get(i);
+            ArrayList<Student> studentsTemp = temp.getStudents();
+
+            for(int j = 0; j < studentsTemp.size(); j++){
+                Student checkStudent = studentsTemp.get(j);
+
+                if(studentIds.size() == 0){
+                    studentIds.add(checkStudent.getId());
+                    studentsToAdd.add(checkStudent);
+                }else{
+                    boolean hasStudent = false;
+
+                    for(int k = 0; k < studentIds.size(); k++){
+                        if(studentIds.get(k) == checkStudent.getId()){
+                            hasStudent = true;
+                        }
+                    }
+
+                    if(hasStudent != true) {
+                        studentIds.add(checkStudent.getId());
+                        studentsToAdd.add(checkStudent);
+                    }
+                }
+            }
+        }
+        this.students = studentsToAdd;
+    }
+
     public void setStartDate(DateTime startDate) {
         this.startDate = startDate;
     }
